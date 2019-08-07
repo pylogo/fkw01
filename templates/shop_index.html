@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商户后台</title>
+    {#    {% load static %}#}
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <style>
+        #geren {
+            text-decoration: none
+        }
+
+        #dianpu {
+            text-decoration: none
+        }
+
+        #shangping {
+            text-decoration: none
+        }
+
+        #jiaoyi {
+            text-decoration: none
+        }
+
+        #guanyu {
+            text-decoration: none
+        }
+
+    </style>
+
+</head>
+<body>
+
+{#首页#}
+<div class="row">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">后台</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/shop/index/">首页<span class="sr-only">(current)</span></a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">更多 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/shop/info/">店铺信息</a></li>
+                            <li><a href="/shop/link/" id="shop_link">店铺链接</a></li>
+                            <li><a href="/user/security/">修改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" id="logout">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+
+<div class="row">
+    {#    侧边栏#}
+    <div class="col-md-1">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                           aria-expanded="false" aria-controls="collapseOne" class="collapsed" id="geren">
+                            个人信息
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
+                     aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        <a href="/user/security/" class="btn btn-info btn-sm">修改密码</a>
+                        <hr>
+                        <a href="/user/pay/apply/" class="btn btn-info btn-sm">申请提现</a>
+                        <hr>
+                        <a href="/user/pay/list/" class="btn btn-info btn-sm">结算记录</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="dianpu">
+                            店铺管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"
+                     aria-expanded="false">
+                    <div class="panel-body">
+                        <a href="/shop/info/" class="btn btn-info btn-sm">店铺信息</a>
+                        <hr>
+                        <a href="/shop/link/" class="btn btn-info btn-sm">店铺链接</a>
+                        <hr>
+                        <a href="/shop/login/" class="btn btn-info btn-sm">登陆日志</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="shangping">
+                            商品管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"
+                     aria-expanded="false">
+                    <div class="panel-body">
+                        <a href="/shop/category/" class="btn btn-info btn-sm">商品分类</a>
+                        <hr>
+                        <a href="/shop/commodity/list" class="btn btn-info btn-sm">商品列表</a>
+                        <hr>
+                        <a href="/shop/commodity/add" class="btn btn-info btn-sm">添加商品</a>
+                        <hr>
+                        <a href="/shop/card/add" class="btn btn-info btn-sm">添加卡密</a>
+                        <hr>
+                        <a href="/shop/card/list" class="btn btn-info btn-sm">卡密管理</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading4">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapse4" aria-expanded="false" aria-controls="collapseThree" id="jiaoyi">
+                            交易管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"
+                     aria-expanded="false">
+                    <div class="panel-body">
+                        <a href="/shop/order/list" class="btn btn-info btn-sm">订单记录</a> <br>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    {#    可替换#}
+    {% block home %}
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="well well-lg">
+                        <h5>我的余额</h5>
+                        <br>
+                        <h4>账户可用余额(元)</h4>
+                        <hr>
+
+                        <h3>{{ user_info.user_details.available_balance }}</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="well well-lg">
+                        <h5>交易量</h5>
+                        <br>
+                        <span>
+                        成交(笔) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        总收益(元) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提现余额:
+                    </span>
+                        <hr>
+                        <span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user_info.user_details.transactions_Number }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user_info.user_details.total_balance }} 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user_info.user_details.withdraw_balance }} 元
+                    </span>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="well well-lg">
+                <h5>消息列表</h5>
+                <hr>
+                <div class="text-center">
+                    <table class="table  table-condensed table-hover table-responsive ">
+                        <thead>
+                        <tr>
+                            <th class="text-left">标题</th>
+                            <th class="text-center">内容</th>
+                            <th class="text-right">时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for affiche_obj in affiche %}
+                            <tr>
+                                <td class="text-left">{{ affiche_obj.affich_title }}</td>
+                                <td class="text-center">{{ affiche_obj.affiche_content }}</td>
+                                <td class="text-right">{{ affiche_obj.time }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="well well-lg">
+                <span><b>店铺名称 :</b>&nbsp;&nbsp;{{ user_info.user_details.shop_name }}</span><br>
+                <span><b>登陆账号 :</b>&nbsp;&nbsp;{{ user_info.username }}</span><br>
+                <span><b>最近登陆 :</b>&nbsp;&nbsp;{{ user_info.user_details.last_landing_time }}</span><br>
+                <span><b>登陆地址 :</b>&nbsp;&nbsp;{{ user_info.user_details.last_login_addr }}</span><br>
+            </div>
+            <div class="well well-lg">
+                <h4> 常用功能</h4>
+                <a href="/shop/info/" class="btn btn-warning">店铺信息</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/shop/link/" class="btn btn-warning">店铺链接</a>
+                <hr>
+                <a href="/shop/category/" class="btn btn-warning">商品分类</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/shop/commodity/list" class="btn btn-warning">商品列表</a>
+                <hr>
+                <a href="/shop/order/list" class="btn btn-warning">订单记录</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/shop/card/add" class="btn btn-warning">添加卡密</a>
+            </div>
+        </div>
+    {% endblock %}
+
+
+</div>
+
+<script>
+    {% block js %}
+
+    {% endblock %}
+
+    $('#logout').click(function () {
+        $.removeCookie('token', {path: '/'});
+        window.location = '/'
+
+    });
+
+
+</script>
+
+
+</body>
+</html>

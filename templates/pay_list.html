@@ -1,0 +1,121 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>提现记录</h4>
+        <hr>
+        <table class="table  table-condensed table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>提现金额</th>
+                <th>提现状态</th>
+                <th>提现时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for withdrawals_details in withdrawals_details_obj %}
+                <tr>
+                    <td>{{ withdrawals_details.pk }}</td>
+                    <td>{{ withdrawals_details.amount }}</td>
+                    <td>{{ withdrawals_details.get_status_type_display }}</td>
+                    <td>{{ withdrawals_details.creation_time }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    // 删除
+    $('.delete11').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    // alert(pk)
+
+
+
+    $.ajax({
+    url: '',
+    type: 'delete',
+    data: {
+    'pk':pk,
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+    // 下架
+    $('.down').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    // alert(pk)
+    //
+    let msg = $(this).attr('msg');
+    // alert(msg)
+
+
+    $.ajax({
+    url: '',
+    type: 'put',
+    data: {
+    'pk':pk,
+    'status':msg
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    alert(data.msg)
+    location.href = data.url;
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+    // 上架
+    $('.up').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    // alert(pk)
+    //
+    let msg = $(this).attr('msg');
+    // alert(msg)
+
+
+    $.ajax({
+    url: '',
+    type: 'put',
+    data: {
+    'pk':pk,
+    'status':msg
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    alert(data.msg)
+    location.href = data.url;
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+{% endblock %}

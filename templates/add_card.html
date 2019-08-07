@@ -1,0 +1,53 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>添加卡密</h4>
+        <label for="sort_id">商品名称</label><br>
+        <select name="" id="sort_id" class="form-control" >
+            {% for shop_obj in all_shop %}
+                <option>{{ shop_obj.shop_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="message-text" class="control-label">卡密</label>
+        <textarea class="form-control" id="message-text" placeholder="卡号---密码，一行一张卡
+如：ABCDEFG---123456
+(卡密长度不得超过100位)" style="height: 300px;"></textarea>
+        <br>
+
+
+        <input type="submit" value="保存信息" class="btn btn-warning"
+               id="shop_info_submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="info_error" style="color: red; "></span>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    $('#shop_info_submit').click(function () {
+    $.ajax({
+    url: '',
+    type: 'post',
+    data: {
+    'sort_id': $('#sort_id').val(),
+    'message_text': $('#message-text').val(),
+
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    $('#info_error').html(data.msg);
+    alert(data.msg);
+    location.href = data.url;
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+
+{% endblock %}

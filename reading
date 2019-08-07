@@ -1,0 +1,2 @@
+启动邮件:celery worker -A celery_task -l info
+启动定时任务: celery beat -A celery_task -l info

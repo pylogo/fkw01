@@ -1,0 +1,144 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>添加分类</h4>
+        <hr>
+        <label for="add_category_name">分类名称</label>
+        <input type="text" id="add_category_name" class="form-control">
+        <br>
+        <label for="add_category_remark">分类备注</label>
+        <input type="text" id="add_category_remark" class="form-control">
+        <br>
+        <input type="submit" id="add_button" class="btn btn-warning" value="添加">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+            id="info_error" style='color: red'></span>
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th class="text-center">分类名称</th>
+                <th>备注</th>
+                <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in all_category %}
+                <tr>
+                    <td>{{ category.pk }}</td>
+                    <td class="text-center">{{ category.sort_name }}</td>
+                    <td class="text">{{ category.remark }}</td>
+
+                    <td>
+                        <input type="submit" value="编辑" class="btn btn-warning btn-sm edit_111" id="edit_id"
+                               data-toggle="modal" data-target="#exampleModal" pk="{{ category.pk }} " sort_name="{{ category.sort_name }}" remark="{{ category.remark }}" >
+                        <input type="submit" value="删除" class="btn btn-warning btn-sm delete11" id="id_delete"
+                               pk="{{ category.pk }}">
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <hr>
+    </div>
+
+
+    {#<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"#}
+    {#            data-whatever="编辑页面">编辑#}
+    {#    </button>#}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">欢迎</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">分类名称：</label>
+                            <input type="text" class="form-control  sort111" id="sort" value="sort_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">备注：</label>
+                            <input type="text" class="form-control " id="name" value="">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="d1">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block js %}
+
+    $('#add_button').click(function () {
+    $.ajax({
+    url: '',
+    type: 'post',
+    data: {
+    'add_category_name': $('#add_category_name').val(),
+    'add_category_remark': $('#add_category_remark').val()
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+
+
+    $('.delete11').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    alert(pk)
+
+    $.ajax({
+    url: '',
+    type: 'delete',
+    data: {
+    'pk':pk,
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+
+
+
+
+{% endblock %}

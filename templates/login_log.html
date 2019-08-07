@@ -1,0 +1,30 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>登陆日志</h4>
+        <hr>
+        <table class="table table-condensed table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th class="text-center">登陆时间</th>
+                <th>登陆地址</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for login in login_obj %}
+                <tr>
+                <td>{{ login.pk }}</td>
+                <td class="text-center">{{ login.login_time }}</td>
+                <td>{{ login.login_addr }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
+

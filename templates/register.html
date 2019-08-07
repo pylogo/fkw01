@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="content-Type" charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册功能</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="particles-js">
+    <div class="login">
+
+        {#        <form action="" method="post">#}
+        {#                    {% csrf_token %}#}
+        <div class="login-top">
+            <h1>注册</h1>
+        </div>
+        <div class="login-center clearfix">
+            <div class="login-center-img"><img src="/static/images/name.png"></div>
+            <div class="login-center-input">
+                <input type="text" name="username" value="" placeholder="请输入您的用户名" onfocus="this.placeholder=''"
+                       onblur="this.placeholder='请输入您的用户名'" id="id_username">
+                <div class="login-center-input-text">用户名</div>
+            </div>
+        </div>
+
+        <div class="login-center clearfix">
+            <div class="login-center-img"><img src="/static/images/password.png"></div>
+            <div class="login-center-input">
+                <input type="password" name="password" value="" placeholder="请输入您的密码" onfocus="this.placeholder=''"
+                       onblur="this.placeholder='请输入您的密码'" id="id_password">
+                <div class="login-center-input-text">密码</div>
+            </div>
+        </div>
+
+        <div class="login-center clearfix">
+            <div class="login-center-img"><img src="/static/images/password.png"></div>
+            <div class="login-center-input">
+                <input type="email" name="email" value="" placeholder="请输入您的邮箱" onfocus="this.placeholder=''"
+                       onblur="this.placeholder='请输入您的邮箱'" id="id_email">
+                <div class="login-center-input-text">邮箱</div>
+            </div>
+        </div>
+
+        <div class="login-center">
+            <input type="checkbox" id="allow"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="allow"><a href="">同意"自动发卡平台注册协议"</a></label>
+        </div>
+
+        <div style="text-align: center">
+            <span id="id_error" style="color: red"></span>
+            <br>
+            <button class="login-button" id="id_button">提交</button>
+        </div>
+        {#        </form>#}
+    </div>
+    <div class="sk-rotating-plane"></div>
+    <canvas class="particles-js-canvas-el" width="1343" height="402" style="width: 100%; height: 100%;"></canvas>
+</div>
+
+<script src="{% static 'js/particles.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script>
+    $('#id_button').click(function () {
+        $.ajax({
+            url: '',
+            type: 'post',
+            data: {
+                'username': $('#id_username').val(),
+                'password': $('#id_password').val(),
+                'email': $('#id_email').val(),
+                'allow': $('#allow').prop('checked'),
+            },
+            success: function (data) {
+                if (data.code == 200) {
+                    location.href = data.url
+                } else {
+                    $('#id_error').html(data.msg)
+                }
+            }
+        })
+    })
+</script>
+
+
+</body>
+</html>

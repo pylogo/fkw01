@@ -1,0 +1,68 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>添加商品</h4>
+        <label for="sort_id">分类</label><br>
+        <select name="" id="sort_id" class="form-control">
+            {% for sort in sort_obj %}
+                <option>{{ sort.sort_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="shop_name">商品名称</label><br>
+        <input type="text" id="shop_name" value="" class="form-control" name="shop_name">
+        <br>
+
+        <label for="shop_price">商品价格</label><br>
+        <input type="text" id="shop_price" value="" class="form-control "
+               name="shop_price">
+        <br>
+
+        <label for="shop_describe">商品描述</label><br>
+        <input type="text" id="shop_describe" value="" class="form-control "
+               name="shop_describe">
+        <br>
+
+        <label for="shop_status">状态</label><br>
+        <select name="shop_status" id="shop_status" class="form-control">
+            <option>上架</option>
+            <option>下架</option>
+        </select>
+        <br>
+
+
+        <input type="submit" value="保存信息" class="btn btn-warning"
+               id="shop_info_submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="info_error" style='color: red'></span>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    $('#shop_info_submit').click(function () {
+    $.ajax({
+    url: '',
+    type: 'post',
+    data: {
+    'sort_id': $('#sort_id').val(),
+    'shop_name': $('#shop_name').val(),
+    'shop_price': $('#shop_price').val(),
+    'shop_describe': $('#shop_describe').val(),
+    'shop_status': $('#shop_status').val(),
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+{% endblock %}

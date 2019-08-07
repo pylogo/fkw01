@@ -1,0 +1,71 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>卡密管理</h4>
+        <hr>
+        <table class="table table-condensed table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>卡密</th>
+                <th>所属商品</th>
+{#                <th>状态</th>#}
+                <th>售出状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for card in card_all_info %}
+                <tr>
+                    <td>{{ card.pk }}</td>
+                    <td>{{ card.card }}</td>
+                    <td>{{ card.commodity_info.shop_name }}</td>
+{#                    <td>{{ card.commodity_info.get_sold_type_display }}</td>#}
+                    <td>{{ card.get_card_type_display}}</td>
+                    <td>
+                        <input type="submit" value="删除" class="btn btn-warning btn-sm delete11" id="id_delete"
+                               pk="{{ card.pk }}">
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    // 删除
+    $('.delete11').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    // alert(pk)
+
+
+
+    $.ajax({
+    url: '',
+    type: 'delete',
+    data: {
+    'pk':pk,
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+{% endblock %}
+
+

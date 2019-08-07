@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <title>商户-凉生发卡网</title>
+    <meta name=description content="用户购买后有问题请第一时间联系上方卖家ＱＱ">
+    <meta name=keywords content="商户-凉生发卡网">
+    <script src="/static/shop_theme/classic/jquery-1.8.3.min.js"></script>
+    <link href="/static/shop_theme/classic/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <script src="/static/shop_theme/classic/sweetalert2/sweetalert2.min.js"></script>
+    <link href="/static/shop_theme/classic/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/shop_theme/classic/pc.min.css?v=1.8" rel="stylesheet" type="text/css">
+    <script src="/static/shop_theme/classic/layui/layer.js"></script>
+    <link href="/static/plugins/css/quill.snow.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/static/plugins/js/quill.min.js"></script>
+    <link rel="stylesheet" href="/static/shop_theme/classic/layui/css/layui.css">
+</head>
+<body>
+<section class="page_top">
+    <div class="container">
+        <div class="top">
+            <div class="logo"><a href="/"><img src="/static/images/index/logo.PNG" alt=""></a></div>
+            <div class="nav_btn"><i></i></div>
+            <div class="user_btns"><a href="/shop/record/" target="_blank" class="reg_btn" style="width: 180px"><i
+                    class="iconfont icon-sousuo"></i>查询订单</a></div>
+            <div class="nav">
+                <ul>
+                    <li><a class="btn" target="_blank" href="/">首页</a></li>
+                    <li><a class="btn" target="_blank" id="ts">投诉订单</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="nyroModal">
+    <div class="order_form">
+        <div class="left_card" style="min-height: 276px;margin-top: -20px;">
+            <div class="dianpu"><i class="iconfont icon-dengpao"></i>商户</div>
+            <div class="small_card">数字卡密</div>
+            <div class="small_card">自动发货</div>
+            <div class="small_card">信誉卖家</div>
+            <div class="clear"></div>
+            <p>
+                <b>卖家QQ</b>
+                <span>{{ user_info.qq }}</span>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin={{ user_info.qq }}&site=qq&menu=yes" target="_blank"
+                   class="qq1_btn"><i
+                        class="iconfont icon-qq-white"></i>咨询卖家</a><br><span
+                    style="color:red;font-size:12px">商品问题联系卖家</span>
+            </p>
+
+            <p>
+                <b>卖家公告 </b>
+                <span id="ann"></span>
+                <span class="container ql-editor quill-html"></span>
+                <br>
+                <span>{{ user_info.user_details.shop_announcement }}</span>
+
+            </p>
+        </div>
+        {#        <form action="" method="post" class="">#}
+        <div class="right_form layui-form" id="area-picker">
+            <ul>
+                <li class="btn-container-li"><span class="span_up">商品分类</span>
+                    <select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+                        <option value="">请选择类别</option>
+                    </select>
+                    <div id="categories" class="btn-container"></div>
+                </li>
+
+                <li class="btn-container-li"><span class="span_up">商品名称</span>
+                    <div id="products" class="btn-container">
+                        <select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+                            <option value="">请选商品</option>
+                        </select>
+                    </div>
+
+                    <a class="spsm" onclick="showAnn()">[ 卖家公告 ]</a>
+                    <span id="notice" style="display: none"></span>
+                </li>
+
+                <li>
+                    <span class="span_up">商品单价</span>
+                    <p class="big_txt" id="price"><b id="id_pircie">-</b>元</p>
+                    <a style="display:none;top: 10px;" id="discount-btn"></a>
+                    <div id="discount-tip" style="display: none;"></div>
+                </li>
+                <li><span class="span_up">购买数量</span><input type="number" id="quantity" value="1" title="购买数量"><a
+                        class="spsm">[ <span id="invent" style="width: 110px">买多更优惠</span> ]</a></li>
+                <li><span class="span_up">联系方式</span><input class="phone_num" id="contact" name="contact"
+                                                            type="text"
+                                                            placeholder="[必填]可以填写邮箱/QQ/手机号"></li>
+
+                <li>
+                    <span class="span_up">剩余数量</span>
+                    <p class="big_txt" id="price"><b id="id_remaining_stock">--</b>条</p>
+                    {#                        <a style="display:none;top: 10px;" id="discount-btn"></a>#}
+                    <div id="discount-tip" style="display: none;"></div>
+
+                    {#                        <input type="number" id="quantity" value="1" title="剩余数量">#}
+                    {#                        <a class="spsm">[ <span id="invent" style="width: 110px">库存不足请联系客服</span> ]</a>#}
+                </li>
+
+                <li style="width: calc( 100% - 40px ); height: auto"><span class="span_up">商品说明</span>
+                    <p id="description" class="ql-editor quill-html"><b id="id_description"></b></p></li>
+            </ul>
+        </div>
+
+        <div class="clear"></div>
+        <div class="pay_box">
+            <div class="pay_menu">
+                <div class="pay pay_cj_1 checked1">支付</div>
+                <div class="all_pay"><i class="iconfont icon-zijin"></i> 应付总额：<b class="tprice"
+                                                                                 id="should-pay">0.00</b>元
+                </div>
+            </div>
+            <div class="pay_list1">
+                <label class="lab3 checked2">
+                    <input name="payway" value="1" title="支付宝" type="radio"
+                           checked><img src="/static/images/index/ali.png"
+                                        alt="支付宝" width="140">
+                </label>
+            </div>
+            <div id="submit">
+                <button name="check_pay" class="check_pay" id="order-btn">确认支付</button>
+            </div>
+
+        </div>
+        {#        </form>#}
+    </div>
+
+</div>
+
+<script src="/static/shop_theme/classic/layui/layui.js"></script>
+<script src="/static/js/shop_home_js.js">
+
+</script>
+<script>
+
+    //配置插件目录
+    layui.config({
+        base: '/static/shop_theme/classic/layui/mods/'
+        , version: '1.0'
+    });
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form', 'layarea'], function () {
+        var layer = layui.layer
+            , form = layui.form
+            , layarea = layui.layarea;
+
+        layarea.render({
+            elem: '#area-picker',
+            change: function (res) {
+                //选择结果
+                {#console.log(res);#}
+                let shop_name = $('.city-selector').attr('value');
+                {#alert($('.city-selector').attr('value'));#}
+                {#alert(shop_name);#}
+                // 捕获到前端改变到shop_name的值
+                // 发送给后端后端拿到上屏的价格以及库存
+                $.ajax({
+                    url: 'http://www.donghaibook.com/shop/name/info',
+                    type: 'post',
+                    data: {
+                        'shop_name': shop_name,
+                    },
+                    success: function (data) {
+
+                        // location.href = data.url;
+                        let price = data.price;
+                        let remaining_stock = data.remaining_stock;
+                        let describe = data.describe;
+                        //alert(price);
+                        //alert(remaining_stock);
+                        //alert(describe);
+                        $('#id_pircie').text(price);
+                        $('#id_remaining_stock').text(remaining_stock);
+                        $('#id_description').text(describe);
+                        // $('#info_error').html(data.msg)
+                        let should_pay = Number($('#id_pircie').text()) * Number($('#quantity').attr('value'));
+                        $('#should-pay').text(should_pay)
+
+                    }
+
+                });
+
+                // 购买数量
+                // $('#quantity').attr('value')
+                // let quantity = $('#quantity').attr('value')
+                // 商品总额
+                // $('#should-pay').text()
+
+                // let should_pay = quantity
+            }
+        });
+    });
+
+    // 计算价格
+    $('#quantity').on('change', function () {
+
+        let should_pay = Number($('#id_pircie').text()) * Number($('#quantity').attr('value'));
+        $('#should-pay').text(should_pay.toFixed(2))
+    });
+
+    // 捕获提交
+    $('#order-btn').click(function () {
+        $.ajax({
+            {#url: 'http://127.0.0.1:8000/shop/name/info',#}
+            url: 'http://www.donghaibook.com/shop/name/info',
+            type: 'put',
+            data: {
+                'city-selector': $('.city-selector').attr('value'), // 商品名称
+                'quantity': $('#quantity').attr('value'), // 数量
+                'should-pay': $('#should-pay').text(), //总额
+                'contact': $('#contact').val(), // 联系方式
+            },
+            success: function (data) {
+                if (data.code == 200) {
+                    location.href = data.url;
+                    {#alert(data.msg);#}
+                    {#$('#info_error').html(data.msg)#}
+                } else {
+                    alert(data.msg)
+                    // $('#info_error').html(data.msg)
+                }
+            }
+
+        })
+    });
+
+    // 捕获提交
+    $('#ts').click(function () {
+        alert("投诉无效！！")
+    });
+
+
+</script>
+<script>
+
+
+</script>
+</body>
+</html>

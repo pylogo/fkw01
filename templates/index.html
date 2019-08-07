@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="我是一个发卡系统, 这里填写描述"/>
+    <meta name="keywords" content="在线发卡系统"/>
+    <link rel="stylesheet" href="/static/css/index.css?v=1.2">
+    <link rel="stylesheet" href="/static/css/index_mobile.css?v=1.2">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    {#    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>#}
+    <title>凉生发卡 - 最稳定的在线发卡系统</title></head>
+<body>
+<header class="header center-box head-fixed">
+    <div class="container space-between-box">
+        <div class="logo"><a href="/"><img class="logo"
+                {#                                           src="http://ae01.alicdn.com/kf/HTB1T043d8Gw3KVjSZFD760WEpXap.png"#}
+                                           src="/static/images/index/logo.PNG"
+                                           alt="凉生发卡"/></a></div>
+        <ul class="navRoot">
+            <li class="navSection left"><a href="/shop/record/" class="rootLink" style="color: red"
+                                           target="/shop/record/">订单查询</a><a href="/about/" class="rootLink">关于我们</a><a
+                    href="/help/" class="rootLink">帮助中心</a></li>
+            <li class="navSection right grid"><a href="/user/login/" target="_blank" class="rootLink">商户登录</a><a
+                    class="block-btn regbtn" target="_blank" href="/user/register/">注册</a></li>
+        </ul>
+        <ul class="navRoot navRoot-Mobile icon">
+            <div class="side-toggle">
+                <div><span></span><span></span><span></span></div>
+            </div>
+        </ul>
+    </div>
+</header>
+
+<script>$(document).ready(function () {
+    var a = !1;
+    $(".sidebar a").each(function () {
+        -1 < location.href.indexOf($(this).attr("href")) && "/" !== $(this).attr("href") && (a = !0, $(this).addClass("active"))
+    });
+    a || $(".sidebar a:eq(0)").addClass("active");
+    var c = function (a) {
+        var b = $("#header-mask");
+        a ? ($(".side-toggle>div>span:eq(0)").addClass("toggle1"), $(".side-toggle>div>span:eq(1)").addClass("toggle2"), $(".side-toggle>div>span:eq(2)").addClass("toggle3"), b.addClass("slide-fade-enter-active").show(), setTimeout(function () {
+            b.removeClass("slide-fade-enter-active")
+        }, 10)) : ($(".side-toggle>div>span:eq(0)").removeClass("toggle1"), $(".side-toggle>div>span:eq(1)").removeClass("toggle2"), $(".side-toggle>div>span:eq(2)").removeClass("toggle3"), b.addClass("slide-fade-leave-active"), setTimeout(function () {
+            b.removeClass("slide-fade-leave-active").hide()
+        }, 400))
+    };
+    $(".side-toggle").click(function () {
+        c(!$(".side-toggle>div>span:eq(0)").hasClass("toggle1"))
+    });
+    $("#header-mask").click(function () {
+        c(!1)
+    })
+});</script>
+<div id="banner-area">
+    <div class="banner header-box grid" style="opacity: 1; z-index: 88;">
+        <div class="header-container container grid center-box">
+            <div class="mask quote-mask quote-mask-active">
+                <div class="mask1"><img src="/static/images/index/bg-mask1_47d5d.png"></div>
+                <div class="mask2"><img src="/static/images/index/bg-mask2_b8afa.png"></div>
+                <div class="mask3"><img src="/static/images/index/bg-mask3_af41b.png"></div>
+            </div>
+            <div class="left"><h2 class="h2 quote quote-active">全新购卡体验</h2>
+                <p class="f-tit tit-style quote quote-active">致力于解决虚拟商品的快捷寄售服务<br>为商户及买家提供，便捷、绿色、安全、快速的销售和购买体验。</p>
+                <div class="head-btn-group grid quote quote-active"><a class="head-btn" href="/user/register/"
+                                                                       target="_blank"><i class="sj-icon"></i>立即注册</a>
+                </div>
+            </div>
+            <div class="right space-between-box">
+                <div class="small-circle">
+                    <div class="circle cir-1 quote-circle-l1 delay12 quote-circle-l1-active"><img
+                            src="/static/images/index/ills-1_02237.svg"></div>
+                    <div class="circle cir-2 quote-circle-l1 delay13 quote-circle-l1-active"><img
+                            src="/static/images/index/ills-2_6c2eb.svg"></div>
+                    <div class="circle cir-3 quote-circle-l1 delay14 quote-circle-l1-active"><img
+                            src="/static/images/index/ills-3_bd288.svg"></div>
+                </div>
+                <div class="big-circle center-box"><img class="quote-index-circle quote-index-circle-active"
+                                                        src="/static/images/index/ills_69b23.png">
+                    <div class="anim-bg-circle"><span
+                            class="anim-c1 quote-bg-circle delay10 quote-bg-circle-active1"></span><span
+                            class="anim-c2 quote-bg-circle delay8 quote-bg-circle-active2"></span><span
+                            class="anim-c3 quote-bg-circle delay6 quote-bg-circle-active3"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="product anim-product">
+    <div class="container"><h3 class="h3">享受全自动发卡</h3>
+        <p class="p-text-tit">立即注册账户，享受全新的发卡体验</p>
+        <div class="grid space-between-box pro-panel">
+            <div class="center-box anim-item1">
+                <div class="pro-box">
+                    <div class="top grid">
+                        <div class="G1-icon center-box G1-logo-height"><img style="height: 64px"
+                                                                            src="/static/images/index/alipay.png"></div>
+                        <div class="tit-text"><p class="p-text">支付宝自动提现功能</p></div>
+                    </div>
+                    <div class="bottom"><p class="pro-detail-text">自动提现到支付宝账户是基于支付宝的资金处理能力推出的一项功能。<br>本功能可以满足商户对资金的实时需求，可以使用此功能从而实时获得您的销售金额，本功能支持全天自动提现到支付宝。
+                    </p></div>
+                    <a href="/m/user/pay/apply" class="G1-pro-btn" target="_blank">立即使用</a></div>
+            </div>
+            <div class="center-box anim-item2">
+                <div class="pro-box">
+                    <div class="top grid">
+                        <div class="G1-icon G2-icon center-box G1-logo-height"><img style="height: 64px"
+                                                                                    src="/static/images/index/area_chart.png">
+                        </div>
+                        <div class="tit-text"><p class="p-text">丰富的销售统计图表</p></div>
+                    </div>
+                    <div class="bottom"><p class="pro-detail-text">丰富的统计图形表格，用户的支付金额、支付时间、支付方式一目了然。<br>可视化分析可以让商户对用户的支付习惯有更深层次理解，从而可以根据统计分析结果进行针对性优化，迅速提升销售额。
+                    </p></div>
+                    <a href="/m/dashboard" class="G2-pro-btn" target="_blank">立即使用</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="link-box">
+        <div class="container root-link grid">
+            <div class="left">
+                <div class="logo gray"><img style="width: 126px" class="logo"
+                        {#                                            src="http://ae01.alicdn.com/kf/HTB1T043d8Gw3KVjSZFD760WEpXap.png"#}
+                                            src="/static/images/index/xlogo.PNG"
+                                            alt="凉生发卡"/></div>
+            </div>
+            <div class="center grid">
+                <div class="link-item center-box">
+                    <div class="text-dq"><p class="tit">服务</p><a class="a-link" href="/shop/record/"
+                                                                 target="_blank">订单查询</a><a class="a-link"
+                                                                                            href="/user/login/"
+                                                                                            target="_blank">商户登录</a>
+                    </div>
+                </div>
+                <div class="link-item center-box">
+                    <div class="text-dq"><p class="tit">文档</p><a class="a-link" href="/help/">帮助中心</a><a class="a-link"
+                                                                                                        href="/docs">技术文档</a>
+                    </div>
+                </div>
+                <div class="link-item center-box">
+                    <div class="text-dq"><p class="tit">条款</p><a class="a-link" href="/tos">服务协议</a><a class="a-link"
+                                                                                                       href="/private">隐私声明</a>
+                    </div>
+                </div>
+                <div class="link-item center-box">
+                    <div class="text-dq"><p class="tit">关于</p><a class="a-link" href="/about/">关于我们</a><a class="a-link"
+                                                                                                         href="#"></a>
+                    </div>
+                </div>
+            </div>
+{#            <div class="right grid">#}
+{#                <div class="other"><a id="jsl_speed_stat0" href="http://www.yunaq.com/" target="_blank">知道创宇云安全</a>#}
+                    {#                    <script src="/static/js/picture_stat.js" type="text/javascript"></script>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        <div class="container grid other-link">
+            <div class="cop">Copyright © 2019</div>
+            <div class="other grid"><a href="https://github.com/pylogo" target="_blank"><i class="icon">
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"><title>github</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="关于我们-copy-2" transform="translate(-1322.000000, -4608.000000)" fill-rule="nonzero"
+                           fill="#7F8FAC">
+                            <g id="github" transform="translate(1322.000000, 4608.000000)">
+                                <path d="M8.99598662,0.0123569794 C4.02943144,0.0102974828 0.00602006689,4.1395881 0.00602006689,9.23684211 C0.00602006689,13.2652174 2.52240803,16.6901602 6.02809365,17.9485126 C6.49966555,18.0720824 6.42742475,17.7240275 6.42742475,17.4892449 L6.42742475,15.8910755 C3.70033445,16.220595 3.59197324,14.3670481 3.40735786,14.0581236 C3.0361204,13.4093822 2.1632107,13.2446224 2.42408027,12.9356979 C3.04615385,12.6061785 3.67826087,13.0180778 4.41070234,14.1302059 C4.94247492,14.9354691 5.97391304,14.7995423 6.49966555,14.6656751 C6.61404682,14.1816934 6.86086957,13.7491991 7.19598662,13.4114416 C4.37458194,12.8965675 3.19464883,11.1254005 3.19464883,9.02059497 C3.19464883,8.00114416 3.52173913,7.06201373 4.16588629,6.30617849 C3.75652174,5.05606407 4.20401338,3.98924485 4.26421405,3.83066362 C5.43210702,3.7215103 6.64214047,4.68741419 6.73846154,4.76361556 C7.40267559,4.58032037 8.15919732,4.48146453 9.00602007,4.48146453 C9.85886288,4.48146453 10.619398,4.58237986 11.2856187,4.76773455 C11.5123746,4.59061785 12.6381271,3.76270023 13.7217391,3.86361556 C13.7799331,4.0221968 14.2173913,5.06430206 13.832107,6.2979405 C14.4842809,7.05583524 14.8133779,8.00114416 14.8133779,9.02677346 C14.8133779,11.1356979 13.6294314,12.906865 10.7959866,13.4196796 C11.2695652,13.8974828 11.5625418,14.5627002 11.5625418,15.2979405 L11.5625418,17.6169336 C11.5785953,17.8002288 11.5625418,17.987643 11.8655518,17.987643 C15.4254181,16.7540046 17.9859532,13.3043478 17.9859532,9.2389016 C17.9859532,4.1416476 13.9605351,0.0123569794 8.99598662,0.0123569794 Z"
+                                      id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </i></a></div>
+        </div>
+        <div class="container ship-link grid">
+            <div class="left">友情链接</div>
+            <div class="right"></div>
+        </div>
+        <div class="container beian"><p>西安木柯网络科技有限公司</p><a target="_blank">备案号：苏ICP备19014213号</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

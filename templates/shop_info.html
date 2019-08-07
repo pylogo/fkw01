@@ -1,0 +1,69 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>编辑信息</h4>
+        <label for="shop_id">商户ID</label><br>
+        <input type="text" id="shop_id" class="form-control" value='{{ user_info.id }}' disabled name="shop_id">
+        <br>
+
+        <label for="shop_email">绑定邮箱:</label><br>
+        <input type="text" id="shop_email" value="{{ user_info.email }}" class="form-control" name="shop_email" disabled>
+        <br>
+
+        <label for="handling_fee">手续费</label><br>
+        <input type="text" id="handling_fee" value="{{ user_info.user_details.handling_fee }}%" class="form-control " name="handling_fee" disabled>
+        <br>
+
+        <label for="shop_account">* 收款账户</label><br>
+        <input type="text" id="shop_account" value="{{ user_info.user_details.shop_account }}" class="form-control " name="shop_account">
+        <br>
+
+        <label for="shop_qq">* 商户QQ</label><br>
+        <input type="text" id="shop_qq" value="{{ user_info.qq }}" class="form-control " name="shop_qq">
+        <br>
+
+        <label for="shop_name">* 店铺名称</label><br>
+        <input type="text" id="shop_name" value="{{ user_info.user_details.shop_name }}" class="form-control "
+               name="shop_name">
+        <br>
+
+        <label for="shop_announcement">* 店铺公告</label><br>
+        <input type="text" id="shop_announcement" value="{{ user_info.user_details.shop_announcement }}"
+               class="form-control " name="shop_announcement">
+        <hr>
+
+        <input type="submit" value="保存信息" class="btn btn-warning" id="shop_info_submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="info_error" style='color: red' ></span>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    $('#shop_info_submit').click(function () {
+    $.ajax({
+    url: '',
+    type: 'put',
+    data: {
+    'shop_id': $('#shop_id').val(),
+    'shop_email': $('#shop_email').val(),
+    'shop_qq': $('#shop_qq').val(),
+    'shop_name': $('#shop_name').val(),
+    'shop_account': $('#shop_account').val(),
+    'shop_announcement': $('#shop_announcement').val(),
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    document.cookie = data.token;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+{% endblock %}

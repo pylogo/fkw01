@@ -1,0 +1,45 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>申请提现</h4>
+        <hr>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>账户余额 : <b
+            id="available_balance">{{ user_details_obj.available_balance }}</b> <b>元</b></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>冻结余额 : <b>0.00</b> <b>元</b></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>可提余额 : <b
+            id="available_balance">{{ user_details_obj.available_balance }}</b> <b>元</b></span>
+        <hr>
+        <label for="price" >金额</label>
+        <input type="text" class="form-control" id="price">
+        <hr>
+        <input type="submit" value="保存信息" class="btn btn-warning "
+               id="shop_info_submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="info_error" style='color: red'></span>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    $('#shop_info_submit').click(function () {
+    $.ajax({
+    url: '',
+    type: 'post',
+    data: {
+    'price': $('#price').val(),
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    // location.href = data.url;
+    document.cookie = data.token;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+{% endblock %}

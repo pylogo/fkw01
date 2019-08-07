@@ -1,0 +1,79 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>订单记录</h4>
+        <hr>
+        <table class="table table-condensed table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>订单号</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>支付时间</th>
+                <th>商品名称</th>
+                <th>卡密内容</th>
+                <th>支付方式</th>
+                <th>金额</th>
+                <th>入账</th>
+                <th>买家联系方式</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in order_info %}
+                <tr>
+                    <td>{{ order.pk }}</td>
+                    <td>{{ order.order_number }}</td>
+                    <td>{{ order.get_order_status_type_display }}</td>
+                    <td>{{ order.create_time }}</td>
+                    <td>{{ order.pay_time }}</td>
+                    <td>{{ order.commodity_info.shop_name }}</td>
+                    <td>{{ order.card_info }}</td>
+                    <td>{{ order.get_payment_method_display }}</td>
+                    <td>{{ order.amount }}</td>
+                    <td>{{ order.shop_cell }}</td>
+                    <td>{{ order.buyer_email }}</td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    // 删除
+    $('.delete11').click(function () {
+    // 点击标签的本身
+    let pk = $(this).attr('pk');
+    // 获取标签的属性
+    // alert(pk)
+
+
+
+    $.ajax({
+    url: '',
+    type: 'delete',
+    data: {
+    'pk':pk,
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    location.href = data.url;
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+
+    })
+    });
+
+{% endblock %}
+
+

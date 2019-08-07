@@ -1,0 +1,49 @@
+{% extends 'shop_index.html' %}
+
+{% block home %}
+    <div class="col-md-11">
+        <h4>修改密码</h4>
+        <label for="old_password">* 旧密码</label>
+        <input type="text" id="old_password" class="form-control"  name="old_password">
+        <br>
+
+
+        <label for="password">* 新密码</label>
+        <input type="text" id="password" value="{{ user_info.shop_details.shop_name }}" class="form-control "
+               name="password">
+        <br>
+
+        <label for="affirm_password">* 确认密码</label>
+        <input type="text" id="affirm_password" value="{{ user_info.shop_details.shop_announcement }}"
+               class="form-control " name="affirm_password">
+        <hr>
+
+        <input type="submit" value="确认修改" class="btn btn-warning"
+               id="shop_info_submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="info_error" style='color: red'></span>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+
+    $('#shop_info_submit').click(function () {
+    $.ajax({
+    url: '',
+    type: 'put',
+    data: {
+    'old_password': $('#old_password').val(),
+    'password': $('#password').val(),
+    'affirm_password': $('#affirm_password').val(),
+    },
+    success: function (data) {
+    if (data.code == 200) {
+    $('#info_error').html(data.msg)
+    } else {
+    $('#info_error').html(data.msg)
+    }
+    }
+    })
+    });
+
+{% endblock %}
